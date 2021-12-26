@@ -4,8 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DevicesRegistry {
+public class DeviceRegistryApplication {
+
+	public static final String BASE_PATH = "/devices";
+
 	public static void main(String[] args) {
-		SpringApplication.run(DevicesRegistry.class, args);
+		SpringApplication.run(DeviceRegistryApplication.class, args);
 	}
 }

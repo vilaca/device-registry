@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class DevicesRegistryTest {
+public class DeviceRegistryApplicationTest {
 	@Test
 	void main_SHOULD_loadContext_WHEN_applicationstarts() {
 		assertNotNull(this);
