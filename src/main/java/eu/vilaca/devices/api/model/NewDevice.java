@@ -11,11 +11,11 @@ import javax.validation.constraints.Size;
 @Data
 @Accessors(chain = true)
 public class NewDevice {
-	@NotBlank
-	@Size(max = 30)
+	@NotBlank(message = "Device [name] should not be blank")
+	@Size(max = 30, message = "Device [name] length should be less or equal to 30.")
 	private String name;
-	@NotBlank
-	@Size(max = 20)
+	@NotBlank(message = "Device [brand] should not be blank")
+	@Size(max = 20, message = "Device [brand] length should be less or equal to 20.")
 	private String brand;
 
 	public NewDevice(String name, String brand) {

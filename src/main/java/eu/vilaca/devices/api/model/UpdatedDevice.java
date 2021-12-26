@@ -1,14 +1,8 @@
 package eu.vilaca.devices.api.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@ToString
+@Data
 public class UpdatedDevice {
 	private String name;
 	private String brand;

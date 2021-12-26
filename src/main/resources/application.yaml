@@ -2,5 +2,7 @@ spring:
   webflux:
     base-path: "/"
   r2dbc.url: "r2dbc:postgresql://postgres@localhost:5432/postgres"
-
+server:
+  error:
+    include-message: "always"
 logging.level.org.springframework: WARN
