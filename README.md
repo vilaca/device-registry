@@ -4,15 +4,13 @@ REST API to keep track of devices.
 
 //TODO swagger
 
-//TODO build
-
 ## Required dependencies
 
 All required dependecies are managed by gradle or docker (compose).
 
 Only a recent version of docker is required. docker 20.10.8 was used during development.
 
-To run use `docker compose up -d`. To stop: `docker compose down`.
+To run use `docker compose up -d --build`. To stop: `docker compose down`.
 
 ## Service
 
