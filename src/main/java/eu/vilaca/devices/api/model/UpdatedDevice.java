@@ -1,4 +1,4 @@
-package eu.vilaca.devices.model;
+package eu.vilaca.devices.api.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,8 +9,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class UpdateDevice {
-	private Long id;
+public class UpdatedDevice {
 	private String name;
 	private String brand;
 }

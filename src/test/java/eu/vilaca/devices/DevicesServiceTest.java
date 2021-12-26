@@ -1,59 +1,30 @@
 package eu.vilaca.devices;
 
-
 import eu.vilaca.devices.api.model.NewDevice;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ExtendWith(SpringExtension.class)
 @DirtiesContext
-public class DevicesControllerTest {
+public class DevicesServiceTest {
 
 	private WebTestClient webTestClient;
 
 	@Autowired
 	private DevicesService service;
 
-	@LocalServerPort
-	private int randomServerPort;
-
-	@BeforeEach
-	public void setup() {
-		this.webTestClient = WebTestClient.bindToServer().baseUrl("http://localhost:" + randomServerPort).build();
-	}
-//
-//	@Test
-//	void GIVEN_valid_device_to_be_created_WHEN_calling_create_THEN_return_OK() {
-//
-//		final var newDevice = new NewDevice("name", "brand");
-//
-//		webTestClient.post()
-//				.uri(DeviceRegistryApplication.BASE_PATH)
-//				.bodyValue(newDevice)
-//				.exchange()
-//				.expectStatus().isOk()
-//				.expectBody(Device.class)
-//				.value(device -> assertNotNull(device.getId()));
-//	}
+	@Mock
+	private DevicesRepository repository;
 
 	@Test
-	void GIVEN_device_missing_name_to_be_created_WHEN_calling_create_THEN_return_BAD_REQUEST() {
+	void GIVEN_device_WHEN_calling_create_THEN_repository_create_is_called_AND_return_device() {
 
-		final var newDevice = new NewDevice().setBrand("brand");
 
-		webTestClient.post()
-				.uri(DeviceRegistryApplication.BASE_PATH)
-				.bodyValue(newDevice)
-				.exchange()
-				.expectStatus().isBadRequest();
 	}
 
 

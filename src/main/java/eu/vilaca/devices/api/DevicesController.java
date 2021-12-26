@@ -1,8 +1,9 @@
-package eu.vilaca.devices;
+package eu.vilaca.devices.api;
 
+import eu.vilaca.devices.DevicesService;
+import eu.vilaca.devices.api.model.NewDevice;
+import eu.vilaca.devices.api.model.UpdatedDevice;
 import eu.vilaca.devices.model.Device;
-import eu.vilaca.devices.model.NewDevice;
-import eu.vilaca.devices.model.UpdateDevice;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.repository.query.Param;
@@ -18,6 +19,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 import static eu.vilaca.devices.DeviceRegistryApplication.*;
 
@@ -30,13 +32,18 @@ public class DevicesController {
 	private final DevicesService service;
 
 	@PostMapping
-	public Mono<Device> create(@Valid @RequestBody NewDevice newDevice) {
-		return service.create(newDevice);
+	public Mono<Device> create(@Valid @RequestBody NewDevice device) {
+		return service.create(device);
 	}
 
 	@PutMapping(value = "/{id}")
-	public Mono<Device> update(@Valid @RequestBody UpdateDevice newDevice) {
-		return service.update(newDevice);
+	public Mono<Device> update(@NotBlank @PathVariable("id") Long id, @RequestBody UpdatedDevice device) {
+		return service.update(id, device);
+	}
+
+	@GetMapping(value = "/{id}")
+	public Mono<Device> listById(@NotBlank @PathVariable("id") Long id) {
+		return service.findById(id);
 	}
 
 	@GetMapping
@@ -44,13 +51,8 @@ public class DevicesController {
 		return service.list(brand);
 	}
 
-	@GetMapping(value = "/{id}")
-	public Mono<Device> listById(@PathVariable("id") String id) {
-		return service.listById(id);
-	}
-
 	@DeleteMapping(value = "/{id}")
-	public Mono<Void> deleteById(@PathVariable("id") String id) {
+	public Mono<Void> deleteById(@NotBlank @PathVariable("id") Long id) {
 		return service.deleteById(id);
 	}
 }
