@@ -1,4 +1,4 @@
-package eu.vilaca.devices;
+package eu.vilaca.devices.repositories;
 
 import eu.vilaca.devices.model.Device;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
