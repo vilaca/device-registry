@@ -1,15 +1,35 @@
 package eu.vilaca.devices;
 
 import eu.vilaca.devices.api.model.NewDevice;
+import eu.vilaca.devices.repositories.DevicesRepository;
+import eu.vilaca.devices.services.DevicesService;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.reactive.server.WebTestClient;
+import org.mockito.Mockito;
+import org.springframework.boot.test.context.SpringBootTest;
+import reactor.core.publisher.Flux;
 
-@ExtendWith(SpringExtension.class)
-@DirtiesContext
+import static org.mockito.Mockito.*;
+
+@SpringBootTest
 public class DevicesServiceTest {
+
+	private DevicesRepository mockRepository = Mockito.mock(DevicesRepository.class);
+
+	private DevicesService service = new DevicesService(mockRepository);
+
+	@Test
+	void GIVEN_empty_brand_parameter_WHEN_list_THEN_findAll_is_called() {
+		final var newDevice = new NewDevice("name", "brand");
+		when(mockRepository.findAll()).thenReturn(Flux.empty());
+		service.list("");
+		verify(mockRepository, times(1)).findAll();
+	}
+
+	@Test
+	void GIVEN_not_empty_brand_parameter_WHEN_list_THEN_findAll_is_called() {
+		final var newDevice = new NewDevice("name", "brand");
+		when(mockRepository.findByBrand(anyString())).thenReturn(Flux.empty());
+		service.list("brand-name");
+		verify(mockRepository, times(1)).findByBrand(anyString());
+	}
 }
