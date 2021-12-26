@@ -65,6 +65,14 @@ curl -i --location --request GET 'http://localhost:8080/devices' --header 'Conte
 curl -i --location --request GET 'http://localhost:8080/devices?brand=brand_name' --header 'Content-Type: application/json'
 `
 
+## Service
+
+### Examples
+
+#### Insert a new device
+`
+curl --location --request POST 'http://localhost:8080/devices' --header 'Content-Type: application/json' --data-raw '{"name": "name1","brand": "brand1"}'
+`
 ## Persistence
 
 Persistence uses PostgreSQL.

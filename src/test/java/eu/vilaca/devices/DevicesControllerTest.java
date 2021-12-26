@@ -1,6 +1,5 @@
 package eu.vilaca.devices;
 
-
 import eu.vilaca.devices.api.DevicesController;
 import eu.vilaca.devices.api.model.NewDevice;
 import eu.vilaca.devices.model.Device;
@@ -57,6 +56,7 @@ public class DevicesControllerTest {
 
 		verify(mockService, times(1)).create(any());
 	}
+
 
 	@Test
 	void GIVEN_device_missing_name_to_be_created_WHEN_calling_create_THEN_return_BAD_REQUEST() {
