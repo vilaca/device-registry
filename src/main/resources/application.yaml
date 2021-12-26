@@ -1,7 +1,7 @@
 spring:
   webflux:
     base-path: "/"
-  r2dbc.url: "r2dbc:postgresql://postgres@localhost:5432/postgres"
+  r2dbc.url: "r2dbc:postgresql://postgres@devices-registry-db:5432/postgres"
 server:
   error:
     include-message: "always"
