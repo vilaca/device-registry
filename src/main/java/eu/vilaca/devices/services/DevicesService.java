@@ -1,9 +1,10 @@
-package eu.vilaca.devices;
+package eu.vilaca.devices.services;
 
 import eu.vilaca.devices.api.exceptions.DeviceNotFoundException;
 import eu.vilaca.devices.api.model.NewDevice;
 import eu.vilaca.devices.api.model.UpdatedDevice;
 import eu.vilaca.devices.model.Device;
+import eu.vilaca.devices.repositories.DevicesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -39,10 +40,10 @@ public class DevicesService {
 	}
 
 	private Mono<Device> update(UpdatedDevice device, Device dev) {
-		if (isNullOrBlank(device.getName())) {
+		if (!isNullOrBlank(device.getName())) {
 			dev.setName(device.getName());
 		}
-		if (isNullOrBlank(device.getBrand())) {
+		if (!isNullOrBlank(device.getBrand())) {
 			dev.setBrand(device.getBrand());
 		}
 		return repository.save(dev);

@@ -1,8 +1,7 @@
 package eu.vilaca.devices.model;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
@@ -11,9 +10,9 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.time.LocalDateTime;
 
 @Table
-@Getter
-@Setter
 @NoArgsConstructor
+@Data
+@Accessors(chain = true)
 @ToString
 public class Device {
 	@Id

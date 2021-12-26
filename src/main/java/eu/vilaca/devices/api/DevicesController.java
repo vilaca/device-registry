@@ -1,9 +1,10 @@
 package eu.vilaca.devices.api;
 
-import eu.vilaca.devices.DevicesService;
+
 import eu.vilaca.devices.api.model.NewDevice;
 import eu.vilaca.devices.api.model.UpdatedDevice;
 import eu.vilaca.devices.model.Device;
+import eu.vilaca.devices.services.DevicesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.repository.query.Param;
