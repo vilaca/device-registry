@@ -2,8 +2,6 @@
 
 REST API to keep track of devices.
 
-//TODO swagger
-
 ## Required dependencies
 
 All required dependecies are managed by gradle or docker (compose).

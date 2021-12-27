@@ -10,7 +10,6 @@ import reactor.core.publisher.Flux;
 
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
 public class DevicesServiceTest {
 
 	private DevicesRepository mockRepository = Mockito.mock(DevicesRepository.class);
@@ -19,7 +18,6 @@ public class DevicesServiceTest {
 
 	@Test
 	void GIVEN_empty_brand_parameter_WHEN_list_THEN_findAll_is_called() {
-		final var newDevice = new NewDevice("name", "brand");
 		when(mockRepository.findAll()).thenReturn(Flux.empty());
 		service.list("");
 		verify(mockRepository, times(1)).findAll();
@@ -27,7 +25,6 @@ public class DevicesServiceTest {
 
 	@Test
 	void GIVEN_not_empty_brand_parameter_WHEN_list_THEN_findAll_is_called() {
-		final var newDevice = new NewDevice("name", "brand");
 		when(mockRepository.findByBrand(anyString())).thenReturn(Flux.empty());
 		service.list("brand-name");
 		verify(mockRepository, times(1)).findByBrand(anyString());
