@@ -16,7 +16,16 @@ The service is a Spring boot reactive application using Webflux and a PostgreSQL
 
 The server is listening on port _8080_ and the base path is _/devices_.
 
-### Samples
+| Method | Path                      | Description               |
+|--------|---------------------------|---------------------------|
+| GET    | /devices                  | List all devices.         |
+| GET    | /devices/{id}             | Get device by [ID].       |
+| GET    | /devices?brand=brand_name | Search devices by [brand] |
+| POST   | /devices                  | Insert device             |
+| PUT    | /devices/{id}             | Update device with [ID]   |
+| DELETE | /devices/{id}             | Delete device with [ID]   |
+
+### Sample requests
 
 #### Insert a new _device_
 
@@ -54,21 +63,12 @@ curl -i --location --request DELETE 'http://localhost:8080/devices/1' --header '
 curl -i --location --request GET 'http://localhost:8080/devices' --header 'Content-Type: application/json'
 `
 
-
 #### Search _device_ by _brand_
 
 `
 curl -i --location --request GET 'http://localhost:8080/devices?brand=brand_name' --header 'Content-Type: application/json'
 `
 
-## Service
-
-### Examples
-
-#### Insert a new device
-`
-curl --location --request POST 'http://localhost:8080/devices' --header 'Content-Type: application/json' --data-raw '{"name": "name1","brand": "brand1"}'
-`
 ## Persistence
 
 Persistence uses PostgreSQL.
