@@ -52,6 +52,7 @@ public class DevicesControllerTest {
 				.bodyValue(newDevice)
 				.exchange()
 				.expectStatus().isCreated()
+				.expectHeader().exists("Location")
 				.expectBody(Device.class)
 				.value(device -> assertNotNull(device.getId()));
 

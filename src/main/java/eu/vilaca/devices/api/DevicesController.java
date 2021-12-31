@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -24,6 +25,7 @@ import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import java.net.URI;
 
 import static eu.vilaca.devices.DeviceRegistryApplication.*;
 
@@ -36,21 +38,19 @@ public class DevicesController {
 	private final DevicesService service;
 
 	@PostMapping
-	@ResponseStatus(value = HttpStatus.CREATED)
-	public Mono<SavedDevice> create(@Valid @RequestBody NewDevice device) {
-		return service.create(device);
+	public Mono<ResponseEntity<SavedDevice>> create(@Valid @RequestBody Mono<NewDevice> body) {
+		return body.flatMap(newDevice -> service.create(newDevice)
+				.flatMap(s -> Mono.just(ResponseEntity.created(URI.create(BASE_PATH + "/" + s.getId())).body(s))));
 	}
 
 	@PutMapping(value = "/{id}")
-	@ResponseStatus(value = HttpStatus.OK)
-	public Mono<SavedDevice> update(@NotBlank @PathVariable("id") Long id, @Valid @RequestBody UpdatedDevice device) {
-		return service.update(id, device);
+	public Mono<SavedDevice> update(@NotBlank @PathVariable("id") Long id, @Valid @RequestBody Mono<UpdatedDevice> updatedDevice) {
+		return updatedDevice.flatMap(device -> service.update(id, device));
 	}
 
 	@PatchMapping(value = "/{id}")
-	@ResponseStatus(value = HttpStatus.OK)
-	public Mono<SavedDevice> partialUpdate(@NotBlank @PathVariable("id") Long id, @RequestBody UpdatedDevice device) {
-		return service.partialUpdate(id, device);
+	public Mono<SavedDevice> partialUpdate(@NotBlank @PathVariable("id") Long id, @RequestBody Mono<UpdatedDevice> updatedDevice) {
+		return updatedDevice.flatMap(device -> service.partialUpdate(id, device));
 	}
 
 	@GetMapping(value = "/{id}")
@@ -64,6 +64,7 @@ public class DevicesController {
 	}
 
 	@DeleteMapping(value = "/{id}")
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public Mono<Void> deleteById(@NotBlank @PathVariable("id") Long id) {
 		return service.deleteById(id);
 	}

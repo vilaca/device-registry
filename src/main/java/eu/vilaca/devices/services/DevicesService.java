@@ -48,7 +48,9 @@ public class DevicesService {
 	}
 
 	public Mono<Void> deleteById(Long id) {
-		return repository.deleteById(id);
+		return repository.findById(id)
+				.switchIfEmpty(Mono.error(new DeviceNotFoundException()))
+				.flatMap(repository::delete);
 	}
 
 	private SavedDevice map2SavedDevice(Device device) {
