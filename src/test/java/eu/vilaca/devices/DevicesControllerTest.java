@@ -1,7 +1,8 @@
 package eu.vilaca.devices;
 
 import eu.vilaca.devices.api.DevicesController;
-import eu.vilaca.devices.api.model.NewDevice;
+import eu.vilaca.devices.dto.NewDevice;
+import eu.vilaca.devices.dto.SavedDevice;
 import eu.vilaca.devices.model.Device;
 import eu.vilaca.devices.services.DevicesService;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,7 +45,7 @@ public class DevicesControllerTest {
 	void GIVEN_valid_device_to_be_created_WHEN_calling_create_THEN_return_OK() {
 
 		final var newDevice = new NewDevice("name", "brand");
-		when(mockService.create(any())).thenReturn(Mono.just(new Device().setId(0L)));
+		when(mockService.create(any())).thenReturn(Mono.just(new SavedDevice().setId(0L)));
 
 		webTestClient.post()
 				.uri(DeviceRegistryApplication.BASE_PATH)

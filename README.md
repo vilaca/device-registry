@@ -16,14 +16,15 @@ The service is a Spring boot reactive application using Webflux and a PostgreSQL
 
 The server is listening on port _8080_ and the base path is _/devices_.
 
-| Method | Path                      | Description               |
-|--------|---------------------------|---------------------------|
-| GET    | /devices                  | List all devices.         |
-| GET    | /devices/{id}             | Get device by [ID].       |
-| GET    | /devices?brand=brand_name | Search devices by [brand] |
-| POST   | /devices                  | Insert device             |
-| PUT    | /devices/{id}             | Update device with [ID]   |
-| DELETE | /devices/{id}             | Delete device with [ID]   |
+| Method | Path                      | Description                     |
+|--------|:--------------------------|:--------------------------------|
+| GET    | /devices                  | List all devices.               |
+| POST   | /devices                  | Insert device                   |
+| GET    | /devices?brand=brand_name | Search devices by [brand]       |
+| GET    | /devices/{id}             | Get device by [id].             |
+| PUT    | /devices/{id}             | Update device with [id]         |
+| PATCH  | /devices/{id}             | Partial update device with [id] |
+| DELETE | /devices/{id}             | Delete device with [id]         |
 
 ### Sample requests
 
@@ -39,16 +40,22 @@ curl --location --request POST 'http://localhost:8080/devices' --header 'Content
 curl -i --location --request GET 'http://localhost:8080/devices/1' --header 'Content-Type: application/json'
 `
 
+#### Update a _device_ with the ID 1
+
+`
+curl -i --location --request PUT 'http://localhost:8080/devices/1' --header 'Content-Type: application/json' --data-raw '{"name": "name1", "brand": "brand1"}'
+`
+
 #### Update the name of a _device_ with the ID 1
 
 `
-curl -i --location --request PUT 'http://localhost:8080/devices/1' --header 'Content-Type: application/json' --data-raw '{"name": "name2"}'
+curl -i --location --request PATCH 'http://localhost:8080/devices/1' --header 'Content-Type: application/json' --data-raw '{"name": "name2"}'
 `
 
 #### Update the brand of a _device_ with the ID 1
 
 `
-curl -i --location --request PUT 'http://localhost:8080/devices/1' --header 'Content-Type: application/json' --data-raw '{"brand": "brand2"}'
+curl -i --location --request PATCH 'http://localhost:8080/devices/1' --header 'Content-Type: application/json' --data-raw '{"brand": "brand2"}'
 `
 
 #### Delete a _device_ with the ID 1

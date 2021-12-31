@@ -1,11 +1,9 @@
 package eu.vilaca.devices;
 
-import eu.vilaca.devices.api.model.NewDevice;
 import eu.vilaca.devices.repositories.DevicesRepository;
 import eu.vilaca.devices.services.DevicesService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
 import reactor.core.publisher.Flux;
 
 import static org.mockito.Mockito.*;

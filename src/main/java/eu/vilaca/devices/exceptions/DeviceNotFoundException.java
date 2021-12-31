@@ -1,4 +1,4 @@
-package eu.vilaca.devices.api.exceptions;
+package eu.vilaca.devices.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

@@ -1,9 +1,9 @@
 package eu.vilaca.devices.api;
 
 
-import eu.vilaca.devices.api.model.NewDevice;
-import eu.vilaca.devices.api.model.UpdatedDevice;
-import eu.vilaca.devices.model.Device;
+import eu.vilaca.devices.dto.NewDevice;
+import eu.vilaca.devices.dto.SavedDevice;
+import eu.vilaca.devices.dto.UpdatedDevice;
 import eu.vilaca.devices.services.DevicesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -36,23 +37,29 @@ public class DevicesController {
 
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public Mono<Device> create(@Valid @RequestBody NewDevice device) {
+	public Mono<SavedDevice> create(@Valid @RequestBody NewDevice device) {
 		return service.create(device);
 	}
 
 	@PutMapping(value = "/{id}")
 	@ResponseStatus(value = HttpStatus.OK)
-	public Mono<Device> update(@NotBlank @PathVariable("id") Long id, @RequestBody UpdatedDevice device) {
+	public Mono<SavedDevice> update(@NotBlank @PathVariable("id") Long id, @Valid @RequestBody UpdatedDevice device) {
 		return service.update(id, device);
 	}
 
+	@PatchMapping(value = "/{id}")
+	@ResponseStatus(value = HttpStatus.OK)
+	public Mono<SavedDevice> partialUpdate(@NotBlank @PathVariable("id") Long id, @RequestBody UpdatedDevice device) {
+		return service.partialUpdate(id, device);
+	}
+
 	@GetMapping(value = "/{id}")
-	public Mono<Device> listById(@NotBlank @PathVariable("id") Long id) {
+	public Mono<SavedDevice> listById(@NotBlank @PathVariable("id") Long id) {
 		return service.findById(id);
 	}
 
 	@GetMapping
-	public Flux<Device> list(@Param("brand") String brand) {
+	public Flux<SavedDevice> list(@Param("brand") String brand) {
 		return service.list(brand);
 	}
 
