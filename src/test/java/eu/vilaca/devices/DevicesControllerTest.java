@@ -1,9 +1,9 @@
 package eu.vilaca.devices;
 
 import eu.vilaca.devices.api.DevicesController;
-import eu.vilaca.devices.dto.NewDevice;
-import eu.vilaca.devices.dto.SavedDevice;
-import eu.vilaca.devices.model.Device;
+import eu.vilaca.devices.model.NewDevice;
+import eu.vilaca.devices.model.SavedDevice;
+import eu.vilaca.devices.repositories.Device;
 import eu.vilaca.devices.services.DevicesService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

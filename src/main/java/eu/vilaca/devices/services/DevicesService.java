@@ -1,10 +1,10 @@
 package eu.vilaca.devices.services;
 
-import eu.vilaca.devices.dto.NewDevice;
-import eu.vilaca.devices.dto.SavedDevice;
-import eu.vilaca.devices.dto.UpdatedDevice;
+import eu.vilaca.devices.model.NewDevice;
+import eu.vilaca.devices.model.SavedDevice;
+import eu.vilaca.devices.model.UpdatedDevice;
 import eu.vilaca.devices.exceptions.DeviceNotFoundException;
-import eu.vilaca.devices.model.Device;
+import eu.vilaca.devices.repositories.Device;
 import eu.vilaca.devices.repositories.DevicesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

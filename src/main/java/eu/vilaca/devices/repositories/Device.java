@@ -1,4 +1,4 @@
-package eu.vilaca.devices.model;
+package eu.vilaca.devices.repositories;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

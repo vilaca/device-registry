@@ -1,4 +1,4 @@
-package eu.vilaca.devices.dto;
+package eu.vilaca.devices.model;
 
 import lombok.Data;
 

@@ -17,7 +17,7 @@ The service is a Spring boot reactive application using Webflux and a PostgreSQL
 The server is listening on port _8080_ and the base path is _/devices_.
 
 | Method | Path                      | Description                     |
-|--------|:--------------------------|:--------------------------------|
+|:-------|:--------------------------|:--------------------------------|
 | GET    | /devices                  | List all devices.               |
 | POST   | /devices                  | Insert device                   |
 | GET    | /devices?brand=brand_name | Search devices by [brand]       |
@@ -25,6 +25,8 @@ The server is listening on port _8080_ and the base path is _/devices_.
 | PUT    | /devices/{id}             | Update device with [id]         |
 | PATCH  | /devices/{id}             | Partial update device with [id] |
 | DELETE | /devices/{id}             | Delete device with [id]         |
+
+[> See the complete API definition in Swagger UI](http://localhost:8080/swagger-ui.html)
 
 ### Sample requests
 
